@@ -2,7 +2,6 @@ package info.mediapipe.multihand
 
 import android.graphics.SurfaceTexture
 import android.os.Bundle
-import android.util.Log
 import android.util.Size
 import android.view.SurfaceHolder
 import android.view.SurfaceView
@@ -19,6 +18,7 @@ import com.google.mediapipe.framework.AndroidAssetUtil
 import com.google.mediapipe.framework.Packet
 import com.google.mediapipe.framework.PacketGetter
 import com.google.mediapipe.glutil.EglManager
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,9 +57,9 @@ class MainActivity : AppCompatActivity() {
                 OUTPUT_VIDEO_STREAM_NAME)
         processor!!.videoSurfaceOutput.setFlipY(FLIP_FRAMES_VERTICALLY)
         processor!!.addPacketCallback(OUTPUT_LANDMARKS_STREAM_NAME) { packet: Packet ->
-            Log.d(TAG, "Received multi-hand landmarks packet.")
+            Timber.d("Received multi-hand landmarks packet.")
             val multiHandLandmarks = PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
-            Log.d(TAG, "[TS:" + packet.timestamp + "] " + getMultiHandLandmarksDebugString(multiHandLandmarks))
+            Timber.d("[TS: ${packet.timestamp}] ${getMultiHandLandmarksDebugString(multiHandLandmarks)})")
         }
         PermissionHelper.checkAndRequestCameraPermissions(this)
     }
@@ -146,7 +146,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "MainActivity"
         private const val BINARY_GRAPH_NAME = "multi_hand_tracking_mobile_gpu.binarypb"
         private const val INPUT_VIDEO_STREAM_NAME = "input_video"
         private const val OUTPUT_VIDEO_STREAM_NAME = "output_video"
