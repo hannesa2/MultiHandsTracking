@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private var eglManager: EglManager? = null
 
-    // Sends camera-preview frames into a MediaPipe graph for processing, and displays the processed
-    // frames onto a {@link Surface}.
+    // Sends camera-preview frames into a MediaPipe graph for processing, and displays the processed frames onto a {@link Surface}.
     private var processor: FrameProcessor? = null
 
     // Converts the GL_TEXTURE_EXTERNAL_OES texture from Android camera into a regular texture to be
@@ -40,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     // Handles camera access via the {@link CameraX} Jetpack support library.
     private var cameraHelper: CameraXPreviewHelper? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -89,28 +89,27 @@ class MainActivity : AppCompatActivity() {
         val viewGroup = findViewById<ViewGroup>(R.id.preview_display_layout)
         viewGroup.addView(previewDisplayView)
         previewDisplayView!!.holder
-                .addCallback(
-                        object : SurfaceHolder.Callback {
-                            override fun surfaceCreated(holder: SurfaceHolder) {
-                                processor!!.videoSurfaceOutput.setSurface(holder.surface)
-                            }
+                .addCallback(object : SurfaceHolder.Callback {
+                    override fun surfaceCreated(holder: SurfaceHolder) {
+                        processor!!.videoSurfaceOutput.setSurface(holder.surface)
+                    }
 
-                            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-                                // (Re-)Compute the ideal size of the camera-preview display (the area that the
-                                // camera-preview frames get rendered onto, potentially with scaling and rotation)
-                                // based on the size of the SurfaceView that contains the display.
-                                val viewSize = Size(width, height)
-                                val displaySize = cameraHelper!!.computeDisplaySizeFromViewSize(viewSize)
-                                // Connect the converter to the camera-preview frames as its input (via
-                                // previewFrameTexture), and configure the output width and height as the computed
-                                // display size.
-                                converter!!.setSurfaceTextureAndAttachToGLContext(previewFrameTexture, displaySize.width, displaySize.height)
-                            }
+                    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+                        // (Re-)Compute the ideal size of the camera-preview display (the area that the
+                        // camera-preview frames get rendered onto, potentially with scaling and rotation)
+                        // based on the size of the SurfaceView that contains the display.
+                        val viewSize = Size(width, height)
+                        val displaySize = cameraHelper!!.computeDisplaySizeFromViewSize(viewSize)
+                        // Connect the converter to the camera-preview frames as its input (via
+                        // previewFrameTexture), and configure the output width and height as the computed
+                        // display size.
+                        converter!!.setSurfaceTextureAndAttachToGLContext(previewFrameTexture, displaySize.width, displaySize.height)
+                    }
 
-                            override fun surfaceDestroyed(holder: SurfaceHolder) {
-                                processor!!.videoSurfaceOutput.setSurface(null)
-                            }
-                        })
+                    override fun surfaceDestroyed(holder: SurfaceHolder) {
+                        processor!!.videoSurfaceOutput.setSurface(null)
+                    }
+                })
     }
 
     private fun startCamera() {
@@ -128,16 +127,13 @@ class MainActivity : AppCompatActivity() {
         if (multiHandLandmarks.isEmpty()) {
             return "No hand landmarks"
         }
-        var multiHandLandmarksStr = """
-            Number of hands detected: ${multiHandLandmarks.size}
-
-            """.trimIndent()
+        var multiHandLandmarksStr = "Number of hands detected: ${multiHandLandmarks.size}".trimIndent()
         var handIndex = 0
         for (landmarks in multiHandLandmarks) {
-            multiHandLandmarksStr += """ #Hand landmarks for hand[$handIndex]: ${landmarks.landmarkCount}"""
+            multiHandLandmarksStr += "\r#Hand landmarks for hand[$handIndex]: ${landmarks.landmarkCount}"
             var landmarkIndex = 0
             for (landmark in landmarks.landmarkList) {
-                multiHandLandmarksStr += """ Landmark [$landmarkIndex]: (${landmark.x}, ${landmark.y}, ${landmark.z})"""
+                multiHandLandmarksStr += "\rLandmark [$landmarkIndex]: (${landmark.x}, ${landmark.y}, ${landmark.z})"
                 ++landmarkIndex
             }
             ++handIndex
