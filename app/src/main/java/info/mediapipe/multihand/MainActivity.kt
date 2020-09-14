@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var eglManager: EglManager? = null
 
     // Sends camera-preview frames into a MediaPipe graph for processing, and displays the processed frames onto a {@link Surface}.
-    private var processor: FrameProcessor? = null
+    private lateinit var processor: FrameProcessor
 
     // Converts the GL_TEXTURE_EXTERNAL_OES texture from Android camera into a regular texture to be
     // consumed by {@link FrameProcessor} and the underlying MediaPipe graph.
@@ -45,8 +45,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         previewDisplayView = SurfaceView(this)
         setupPreviewDisplayView()
-        // Initialize asset manager so that MediaPipe native libraries can access the app assets, e.g.,
-        // binary graphs.
+        // Initialize asset manager so that MediaPipe native libraries can access the app assets, e.g., binary graphs.
         AndroidAssetUtil.initializeNativeAssetManager(this)
         eglManager = EglManager(null)
         processor = FrameProcessor(
@@ -55,11 +54,12 @@ class MainActivity : AppCompatActivity() {
                 BINARY_GRAPH_NAME,
                 INPUT_VIDEO_STREAM_NAME,
                 OUTPUT_VIDEO_STREAM_NAME)
-        processor!!.videoSurfaceOutput.setFlipY(FLIP_FRAMES_VERTICALLY)
-        processor!!.addPacketCallback(OUTPUT_LANDMARKS_STREAM_NAME) { packet: Packet ->
-            Timber.d("Received multi-hand landmarks packet.")
+        processor.videoSurfaceOutput.setFlipY(FLIP_FRAMES_VERTICALLY)
+        processor.addPacketCallback(OUTPUT_LANDMARKS_STREAM_NAME) { packet: Packet ->
+            val timeDelay = System.currentTimeMillis() - packet.timestamp
             val multiHandLandmarks = PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
-            Timber.d("[TS: ${packet.timestamp}] ${getMultiHandLandmarksDebugString(multiHandLandmarks)})")
+            if (multiHandLandmarks.isNotEmpty())
+                Timber.d("[delay: ${timeDelay}] ${getMultiHandLandmarksDebugString(multiHandLandmarks)})")
         }
         PermissionHelper.checkAndRequestCameraPermissions(this)
     }
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         converter = ExternalTextureConverter(eglManager!!.context)
-        converter!!.setFlipY(FLIP_FRAMES_VERTICALLY)
-        converter!!.setConsumer(processor)
+        converter?.setFlipY(FLIP_FRAMES_VERTICALLY)
+        converter?.setConsumer(processor)
         if (PermissionHelper.cameraPermissionsGranted(this)) {
             startCamera()
         }
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        converter!!.close()
+        converter?.close()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         previewDisplayView!!.holder
                 .addCallback(object : SurfaceHolder.Callback {
                     override fun surfaceCreated(holder: SurfaceHolder) {
-                        processor!!.videoSurfaceOutput.setSurface(holder.surface)
+                        processor.videoSurfaceOutput.setSurface(holder.surface)
                     }
 
                     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
@@ -103,11 +103,11 @@ class MainActivity : AppCompatActivity() {
                         // Connect the converter to the camera-preview frames as its input (via
                         // previewFrameTexture), and configure the output width and height as the computed
                         // display size.
-                        converter!!.setSurfaceTextureAndAttachToGLContext(previewFrameTexture, displaySize.width, displaySize.height)
+                        converter?.setSurfaceTextureAndAttachToGLContext(previewFrameTexture, displaySize.width, displaySize.height)
                     }
 
                     override fun surfaceDestroyed(holder: SurfaceHolder) {
-                        processor!!.videoSurfaceOutput.setSurface(null)
+                        processor.videoSurfaceOutput.setSurface(null)
                     }
                 })
     }
@@ -124,13 +124,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getMultiHandLandmarksDebugString(multiHandLandmarks: List<NormalizedLandmarkList>): String {
-        if (multiHandLandmarks.isEmpty()) {
-            return "No hand landmarks"
-        }
-        var multiHandLandmarksStr = "Number of hands detected: ${multiHandLandmarks.size}".trimIndent()
+        var multiHandLandmarksStr = "hands ∑${multiHandLandmarks.size}".trimIndent()
         var handIndex = 0
         for (landmarks in multiHandLandmarks) {
-            multiHandLandmarksStr += "\r#Hand landmarks for hand[$handIndex]: ${landmarks.landmarkCount}"
+            multiHandLandmarksStr += "\r#Hand landmarks for hand[$handIndex]: ∑${landmarks.landmarkCount}"
             var landmarkIndex = 0
             for (landmark in landmarks.landmarkList) {
                 multiHandLandmarksStr += "\rLandmark [$landmarkIndex]: (${landmark.x}, ${landmark.y}, ${landmark.z})"
