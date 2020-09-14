@@ -1,2 +1,4 @@
+include ':mp_multi_hand_aar'
 include ':app'
+include ':library'
 rootProject.name='MediaPipeMultiHandsTrackingApp'
