@@ -38,20 +38,25 @@ jobs:
         run: ./gradlew test -Ponly_x86_64
       - name: Run instrumentation tests
         uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
+        env:
+          VERSION: ${{ github.ref }}
+          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
+          ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
+          ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
         with:
-          cmd: ./gradlew cAT -Ponly_x86_64 --continue
+          cmd: ./gradlew cAT --continue
           api: 28
           tag: default
-          abi: arm64-v8a
+          abi: x86_64
       - name: Archive Espresso results
         uses: actions/upload-artifact@v2.1.4
         if: ${{ always() }}
         with:
           name: MediaPipe-Espresso-report
-          path: applications/**/build/reports/androidTests/connected/
+          path: ./**/build/reports/androidTests/connected/
       - name: Save logcat output
         uses: actions/upload-artifact@master
-        if: failure()
+        if: ${{ always() }}
         with:
           name: MediaPipe-logcat
           path: artifacts/logcat.log
@@ -60,7 +65,7 @@ jobs:
         if: ${{ always() }}
         with:
           name: MediaPipe-Screenshots
-          path: applications/screenshots/adb/
+          path: screenshots/adb/
       - name: cleanup keystore
         run: ./signing/cleanup.sh
   Check:
