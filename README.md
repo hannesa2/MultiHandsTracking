@@ -10,16 +10,16 @@ It's a branch, because on master it was deleted
 in top `build.gradle`
 
     allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	  repositories {
+	    ...
+	    maven { url 'https://jitpack.io' }
+	  }
 	}
-	
+
 and in module `build.gradle`
 
 	dependencies {
-	        implementation "com.github.hannesa2:mediapipe_multi_hands_tracking:$LATEST"
+	  implementation "com.github.hannesa2:mediapipe_multi_hands_tracking:$LATEST"
 	}
 
 Please see details here https://jitpack.io/#hannesa2/mediapipe_multi_hands_tracking
