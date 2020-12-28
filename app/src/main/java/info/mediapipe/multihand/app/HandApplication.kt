@@ -1,4 +1,4 @@
-package info.mediapipe.multihand
+package info.mediapipe.multihand.app
 
 import android.annotation.SuppressLint
 import android.app.Application

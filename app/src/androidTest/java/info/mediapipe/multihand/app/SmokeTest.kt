@@ -1,4 +1,4 @@
-package info.mediapipe.multihand
+package info.mediapipe.multihand.app
 
 import android.Manifest
 import androidx.test.espresso.Espresso.onView
