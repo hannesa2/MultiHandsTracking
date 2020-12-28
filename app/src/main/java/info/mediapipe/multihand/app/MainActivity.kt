@@ -1,4 +1,4 @@
-package info.mediapipe.multihand
+package info.mediapipe.multihand.app
 
 import android.graphics.SurfaceTexture
 import android.os.Bundle
