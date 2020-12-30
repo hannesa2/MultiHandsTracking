@@ -125,15 +125,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun getMultiHandLandmarksDebugString(multiHandLandmarks: List<NormalizedLandmarkList>): String {
         var multiHandLandmarksStr = "hands ∑${multiHandLandmarks.size}".trimIndent()
-        var handIndex = 0
-        for (landmarks in multiHandLandmarks) {
+        for ((handIndex, landmarks) in multiHandLandmarks.withIndex()) {
             multiHandLandmarksStr += "\r#Hand landmarks for hand[$handIndex]: ∑${landmarks.landmarkCount}"
-            var landmarkIndex = 0
-            for (landmark in landmarks.landmarkList) {
+            for ((landmarkIndex, landmark) in landmarks.landmarkList.withIndex()) {
                 multiHandLandmarksStr += "\rLandmark [$landmarkIndex]: (${landmark.x}, ${landmark.y}, ${landmark.z})"
-                ++landmarkIndex
             }
-            ++handIndex
         }
         return multiHandLandmarksStr
     }
