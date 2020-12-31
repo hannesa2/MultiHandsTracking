@@ -1,4 +1,4 @@
-package info.mediapipe.multihand.app
+package info.mediapipe.app.multihand
 
 import android.graphics.SurfaceTexture
 import android.os.Bundle
@@ -18,6 +18,8 @@ import com.google.mediapipe.framework.AndroidAssetUtil
 import com.google.mediapipe.framework.Packet
 import com.google.mediapipe.framework.PacketGetter
 import com.google.mediapipe.glutil.EglManager
+import info.mediapipe.app.R
+import info.mediapipe.app.landmarksDebugString
 import timber.log.Timber
 
 class MultiHandActivity : AppCompatActivity() {
@@ -59,7 +61,7 @@ class MultiHandActivity : AppCompatActivity() {
             val timeDelay = System.currentTimeMillis() - packet.timestamp
             val multiHandLandmarks = PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
             if (multiHandLandmarks.isNotEmpty())
-                Timber.d("[delay: ${timeDelay}] ${getMultiHandLandmarksDebugString(multiHandLandmarks)})")
+                Timber.d("[delay: ${timeDelay}] ${multiHandLandmarks.landmarksDebugString()})")
         }
         PermissionHelper.checkAndRequestCameraPermissions(this)
     }
@@ -121,17 +123,6 @@ class MultiHandActivity : AppCompatActivity() {
             previewDisplayView!!.visibility = View.VISIBLE
         }
         cameraHelper!!.startCamera(this, CAMERA_FACING,  /*surfaceTexture=*/null)
-    }
-
-    private fun getMultiHandLandmarksDebugString(multiHandLandmarks: List<NormalizedLandmarkList>): String {
-        var multiHandLandmarksStr = "hands ∑${multiHandLandmarks.size}".trimIndent()
-        for ((handIndex, landmarks) in multiHandLandmarks.withIndex()) {
-            multiHandLandmarksStr += "\r#Hand landmarks for hand[$handIndex]: ∑${landmarks.landmarkCount}"
-            for ((landmarkIndex, landmark) in landmarks.landmarkList.withIndex()) {
-                multiHandLandmarksStr += "\rLandmark [$landmarkIndex]: (${landmark.x}, ${landmark.y}, ${landmark.z})"
-            }
-        }
-        return multiHandLandmarksStr
     }
 
     companion object {
