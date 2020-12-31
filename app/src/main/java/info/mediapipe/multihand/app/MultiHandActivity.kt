@@ -20,7 +20,7 @@ import com.google.mediapipe.framework.PacketGetter
 import com.google.mediapipe.glutil.EglManager
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class MultiHandActivity : AppCompatActivity() {
 
     // {@link SurfaceTexture} where the camera-preview frames can be accessed.
     private var previewFrameTexture: SurfaceTexture? = null
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_multihand)
         previewDisplayView = SurfaceView(this)
         setupPreviewDisplayView()
         // Initialize asset manager so that MediaPipe native libraries can access the app assets, e.g., binary graphs.
