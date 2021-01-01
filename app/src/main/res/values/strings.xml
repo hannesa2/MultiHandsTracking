@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Mediapipe</string>
     <string name="multihand_tracking" translatable="false">MultiHands Tracking</string>
+    <string name="holistic" translatable="false">Holistic</string>
     <string name="no_camera_access" translatable="false">Please grant camera permissions.</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
