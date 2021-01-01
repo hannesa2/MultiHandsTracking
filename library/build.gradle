@@ -21,9 +21,13 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/libmediapipe_jni.so'
+    }
 }
 
 dependencies {
+    api project(":holistic_tracking")
     api project(":mp_multi_hand_aar")
     api 'com.github.AppDevNext.Logcat:LogcatCoreLib:3.4'
     api 'com.google.android.material:material:1.13.0'
