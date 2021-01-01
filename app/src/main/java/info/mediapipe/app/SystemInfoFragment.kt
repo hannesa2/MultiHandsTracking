@@ -7,10 +7,6 @@ import androidx.preference.PreferenceFragmentCompat
 
 class SystemInfoFragment : PreferenceFragmentCompat() {
 
-    companion object {
-        private const val PREFERENCE_ = "preference_"
-    }
-
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs)
@@ -20,5 +16,9 @@ class SystemInfoFragment : PreferenceFragmentCompat() {
         findPreference<Preference>(PREFERENCE_ + "CPU_ABI")?.summary = Build.SUPPORTED_ABIS[0]
         findPreference<Preference>(PREFERENCE_ + "DISPLAY")?.summary = Build.DISPLAY
         findPreference<Preference>(PREFERENCE_ + "USER")?.summary = Build.USER
+    }
+
+    companion object {
+        private const val PREFERENCE_ = "preference_"
     }
 }

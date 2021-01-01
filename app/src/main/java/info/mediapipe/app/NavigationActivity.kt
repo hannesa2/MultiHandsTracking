@@ -13,6 +13,7 @@ import com.google.android.material.navigation.NavigationView
 import info.mediapipe.app.multihand.MultiHandActivity
 
 abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -50,7 +51,7 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
         return true
     }
 
-    protected fun openActivity(clazz: Class<*>) {
+    private fun openActivity(clazz: Class<*>) {
         startActivity(Intent(this, clazz))
         if (clazz.isInstance(NavigationActivity::class.java)) {
             finish()
@@ -59,6 +60,6 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
 
     override fun onResume() {
         super.onResume()
-        supportInvalidateOptionsMenu()
+        invalidateOptionsMenu()
     }
 }

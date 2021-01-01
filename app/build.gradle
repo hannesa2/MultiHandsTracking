@@ -35,15 +35,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            if (System.getenv("CI_SERVER")) { // gitlab
-                println "I run on Gitlab and use RELEASE signing"
-                signingConfig signingConfigs.release
-            } else if (file('../signing/release.keystore').exists()) {
+            if (file('../signing/release.keystore').exists()) {
                 if (System.getenv("KEYSTORE_PASS") == null || System.getenv("ALIAS_NAME") == null || System.getenv("ALIAS_PASS") == null) {
-                    println "I run somewhere else and I use DEBUG signing because variables are not set !"
+                    println "Keystore exists, but I use DEBUG signing because variables are not set !"
                     signingConfig signingConfigs.debug
                 } else {
-                    println "I run somewhere else and I use RELEASE signing"
+                    println "Keystore exists and I use RELEASE signing"
                     signingConfig signingConfigs.release
                 }
             } else {

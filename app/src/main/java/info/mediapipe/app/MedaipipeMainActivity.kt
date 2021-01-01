@@ -5,6 +5,7 @@ import javax.annotation.Nonnull
 import info.hannes.github.AppUpdateHelper
 
 class MedaipipeMainActivity : NavigationActivity() {
+
     override fun onCreate(@Nonnull savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mediapipe_main)
