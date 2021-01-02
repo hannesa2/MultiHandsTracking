@@ -3,10 +3,7 @@ package info.mediapipe.app.multihand
 import android.graphics.SurfaceTexture
 import android.os.Bundle
 import android.util.Size
-import android.view.SurfaceHolder
-import android.view.SurfaceView
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mediapipe.components.CameraHelper.CameraFacing
 import com.google.mediapipe.components.CameraXPreviewHelper
@@ -64,6 +61,8 @@ class MultiHandActivity : AppCompatActivity() {
                 Timber.d("[delay: ${timeDelay}] ${multiHandLandmarks.landmarksDebugString()})")
         }
         PermissionHelper.checkAndRequestCameraPermissions(this)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     override fun onResume() {
