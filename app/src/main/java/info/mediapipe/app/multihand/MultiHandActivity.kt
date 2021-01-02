@@ -3,7 +3,10 @@ package info.mediapipe.app.multihand
 import android.graphics.SurfaceTexture
 import android.os.Bundle
 import android.util.Size
-import android.view.*
+import android.view.SurfaceHolder
+import android.view.SurfaceView
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mediapipe.components.CameraHelper.CameraFacing
 import com.google.mediapipe.components.CameraXPreviewHelper
@@ -61,8 +64,6 @@ class MultiHandActivity : AppCompatActivity() {
                 Timber.d("[delay: ${timeDelay}] ${multiHandLandmarks.landmarksDebugString()})")
         }
         PermissionHelper.checkAndRequestCameraPermissions(this)
-
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     override fun onResume() {
@@ -125,7 +126,7 @@ class MultiHandActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val BINARY_GRAPH_NAME = "hand/multi_hand_tracking_mobile_gpu.binarypb"
+        private const val BINARY_GRAPH_NAME = "multi_hand_tracking_mobile_gpu.binarypb"
         private const val INPUT_VIDEO_STREAM_NAME = "input_video"
         private const val OUTPUT_VIDEO_STREAM_NAME = "output_video"
         private const val OUTPUT_LANDMARKS_STREAM_NAME = "multi_hand_landmarks"
