@@ -83,7 +83,7 @@ jobs:
       - name: cleanup keystore
         run: ./signing/cleanup.sh
       - name: Archive Lint report
-        uses: actions/upload-artifact@v2.2.1
+        uses: actions/upload-artifact@v2.2.2
         if: ${{ always() }}
         with:
           name: MediaPipe-Lint-report
