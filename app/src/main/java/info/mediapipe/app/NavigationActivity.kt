@@ -2,6 +2,7 @@ package info.mediapipe.app
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -10,6 +11,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import info.hannes.github.AppUpdateHelper
+import info.hannes.logcat.LogcatActivity
 import info.mediapipe.app.multihand.MultiHandActivity
 
 abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -61,5 +64,28 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
     override fun onResume() {
         super.onResume()
         invalidateOptionsMenu()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_update -> {
+                AppUpdateHelper.checkForNewVersion(
+                        this,
+                        BuildConfig.GIT_USER,
+                        BuildConfig.GIT_REPOSITORY,
+                        BuildConfig.VERSION_NAME)
+                true
+            }
+            R.id.action_logcat -> {
+                openActivity(LogcatActivity::class.java)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
