@@ -48,6 +48,8 @@ jobs:
           api: 28
           tag: default
           abi: x86_64
+          cmdOptions: -partition-size 2048
+          verbose: true
       - name: Archive Espresso results
         uses: actions/upload-artifact@v2.1.4
         if: ${{ always() }}
