@@ -9,6 +9,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.GrantPermissionRule
 import com.moka.utils.Screenshot
+import info.mediapipe.app.R
+import info.mediapipe.app.multihand.MultiHandActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
