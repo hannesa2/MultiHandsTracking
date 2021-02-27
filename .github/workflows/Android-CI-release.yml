@@ -34,7 +34,7 @@ jobs:
       - run: |
           assetsAAR=$(find . -name *release.aar | while read -r asset ; do echo "-a $asset" ; done)
           VERSION=$(echo $VERSION | cut -d'/' -f3)
-          assetsAPK=$(find . -name *.apk | while read -r asset ; do echo "-a $asset" ; done)
+          assetsAPK=$(find . -name *release.apk | while read -r asset ; do echo "-a $asset" ; done)
           tag_name="${GITHUB_REF##*/}"
           hub release create ${assetsAAR} ${assetsAPK} -m "$tag_name" "$tag_name"
         env:
