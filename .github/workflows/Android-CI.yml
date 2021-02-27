@@ -25,18 +25,18 @@ jobs:
         env:
           CRYPT_PASS: ${{ secrets.CRYPT_PASS }}
       - name: Build project
-        run: ./gradlew clean build
+        run: ./gradlew clean assembleDebug -Ponly_x86_64
         env:
           VERSION: ${{ github.ref }}
           KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
           ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
           ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test -Ponly_x86_64
 #      - name: Run instrumentation tests
 #        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.7
 #        with:
-#          cmd: ./gradlew cAT --continue
+#          cmd: ./gradlew cAT  -Ponly_x86_64 --continue
 #          api: 28
 #          tag: default
 #          abi: arm64-v8a
