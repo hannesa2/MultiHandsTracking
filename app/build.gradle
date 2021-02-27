@@ -14,6 +14,14 @@ android {
         buildConfigField "String", 'GIT_REPOSITORY', "\"" + getGitRepository() + "\""
         buildConfigField "String", 'VERSION', "\"" + versionName + "\""
 
+        ndk {
+            if (project.hasProperty("only_x86_64")) {
+                abiFilters "x86_64"
+            } else {
+                abiFilters "arm64-v8a", "x86_64"
+            }
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -23,11 +31,6 @@ android {
             storePassword System.getenv("KEYSTORE_PASS")
             keyAlias System.getenv("ALIAS_NAME")
             keyPassword System.getenv("ALIAS_PASS")
-        }
-        debug {
-            storePassword "android"
-            keyPassword "android"
-            keyAlias "androiddebugkey"
         }
     }
 
@@ -49,11 +52,6 @@ android {
             }
         }
         debug {
-            if (System.getenv("CI") == "true") { // Github action
-                signingConfig signingConfigs.release
-            } else {
-                signingConfig signingConfigs.debug
-            }
             applicationIdSuffix ".debug"
         }
     }
