@@ -66,6 +66,13 @@ jobs:
         with:
           name: MediaPipe-Screenshots
           path: screenshots/adb/
+      - name: Keep apk
+        uses: actions/upload-artifact@v2.1.4
+        if: ${{ always() }}
+        with:
+          name: MediaPipe-apk
+          path: ./**/build/outputs/apk/debug/*.apk
+          retention-days: 2
       - name: cleanup keystore
         run: ./signing/cleanup.sh
   Check:
