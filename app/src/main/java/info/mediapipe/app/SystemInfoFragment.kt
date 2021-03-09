@@ -10,7 +10,7 @@ class SystemInfoFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs)
-        findPreference<Preference>(PREFERENCE_ + "APPVERSION")?.summary = BuildConfig.VERSION_NAME
+        findPreference<Preference>(PREFERENCE_ + "APPVERSION")?.summary = "${BuildConfig.VERSION_NAME}  debug=${BuildConfig.DEBUG}"
         findPreference<Preference>(PREFERENCE_ + "BOARD")?.summary = Build.BOARD
         findPreference<Preference>(PREFERENCE_ + "BRAND")?.summary = Build.BRAND
         findPreference<Preference>(PREFERENCE_ + "CPU_ABI")?.summary = Build.SUPPORTED_ABIS[0]
