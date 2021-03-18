@@ -2,6 +2,8 @@
 
 pwd
 
+set -x
+
 if [[ -z "$CRYPT_PASS" ]]
 then
    read -sp 'Password: ' CRYPT_PASS
