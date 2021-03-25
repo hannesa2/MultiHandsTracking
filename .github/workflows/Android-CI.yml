@@ -76,14 +76,8 @@ jobs:
           java-version: 11.0.3
       - name: Install Android SDK
         uses: malinskiy/action-android/install-sdk@release/0.1.1
-      - name: Decrypt keystore
-        run: ./signing/decrypt.sh
-        env:
-          CRYPT_PASS: ${{ secrets.CRYPT_PASS }}
       - name: Code checks
         run: ./gradlew check
-      - name: cleanup keystore
-        run: ./signing/cleanup.sh
       - name: Archive Lint report
         uses: actions/upload-artifact@v2.2.2
         if: ${{ always() }}
