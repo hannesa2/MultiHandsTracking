@@ -53,8 +53,7 @@ class MultiHandActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(contentViewLayoutResId)
         try {
-            applicationInfoX =
-                packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+            applicationInfoX = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
         } catch (e: PackageManager.NameNotFoundException) {
             Timber.e("Cannot find application info: $e")
         }
