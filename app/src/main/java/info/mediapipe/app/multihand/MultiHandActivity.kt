@@ -82,9 +82,10 @@ class MultiHandActivity : AppCompatActivity() {
         if (Log.isLoggable(TAG, Log.VERBOSE)) {
             processor.addPacketCallback(OUTPUT_LANDMARKS_STREAM_NAME) { packet: Packet ->
                 Timber.v("Received multi-hand landmarks packet.")
-                val multiHandLandmarks =
-                    PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
-                Timber.v("[TS:${packet.timestamp}] ${multiHandLandmarks.landmarksDebugString()}")
+                val timeDelay = System.currentTimeMillis() - packet.timestamp
+                val multiHandLandmarks = PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
+                if (multiHandLandmarks.isNotEmpty())
+                    Timber.v("[TS:${packet.timestamp}] ${multiHandLandmarks.landmarksDebugString()}")
             }
         }
     }
