@@ -28,7 +28,7 @@ android {
 
 dependencies {
     api project(":holistic_tracking")
-    api project(":mp_multi_hand_aar")
+    // api project(":mp_multi_hand_aar")
     api 'com.github.AppDevNext.Logcat:LogcatCore:2.5.0'
 
     // MediaPipe
