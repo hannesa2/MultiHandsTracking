@@ -128,19 +128,17 @@ class MultiHandActivity : AppCompatActivity() {
         viewGroup.addView(previewDisplayView)
         previewDisplayView?.holder?.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
+                Timber.v("previewDisplayView created")
                 processor.videoSurfaceOutput.setSurface(holder.surface)
             }
 
-            override fun surfaceChanged(
-                holder: SurfaceHolder,
-                format: Int,
-                width: Int,
-                height: Int
-            ) {
+            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+                Timber.v("previewDisplayView changes")
                 onPreviewDisplaySurfaceChanged(width, height)
             }
 
             override fun surfaceDestroyed(holder: SurfaceHolder) {
+                Timber.v("previewDisplayView destroyed")
                 processor.videoSurfaceOutput.setSurface(null)
             }
         })
