@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('mp_multi_hand_aar.aar_0.8.2-3-g77f0820.aar'))
+artifacts.add("default", file('mp_multi_hand_aar.aar_0.8.3.1-5-g62e8b89.aar'))
