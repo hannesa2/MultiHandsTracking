@@ -23,7 +23,8 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
         setSupportActionBar(toolbar)
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
         drawer.addDrawerListener(toggle)
         toggle.syncState()
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
@@ -75,9 +76,10 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
         return when (item.itemId) {
             R.id.action_update -> {
                 AppUpdateHelper.checkForNewVersion(
-                        this,
-                        BuildConfig.GIT_REPOSITORY,
-                        BuildConfig.VERSION_NAME)
+                    this,
+                    BuildConfig.GIT_REPOSITORY,
+                    BuildConfig.VERSION_NAME
+                )
                 true
             }
             R.id.action_logcat -> {
