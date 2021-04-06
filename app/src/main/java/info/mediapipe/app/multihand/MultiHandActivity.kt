@@ -75,7 +75,9 @@ class MultiHandActivity : AppCompatActivity() {
 
         val packetCreator = processor.packetCreator
         val inputSidePackets: MutableMap<String, Packet> = HashMap()
+        Timber.d("inputSidePackets1=${inputSidePackets.size}")
         inputSidePackets[INPUT_NUM_HANDS_SIDE_PACKET_NAME] = packetCreator.createInt32(NUM_HANDS)
+        Timber.d("inputSidePackets2=${inputSidePackets.size}")
         processor.setInputSidePackets(inputSidePackets)
 
         // To show verbose logging, run:
