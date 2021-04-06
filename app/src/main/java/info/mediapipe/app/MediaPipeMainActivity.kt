@@ -4,7 +4,7 @@ import android.os.Bundle
 import javax.annotation.Nonnull
 import info.hannes.github.AppUpdateHelper
 
-class MedaipipeMainActivity : NavigationActivity() {
+class MediaPipeMainActivity : NavigationActivity() {
 
     override fun onCreate(@Nonnull savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

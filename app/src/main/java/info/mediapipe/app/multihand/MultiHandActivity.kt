@@ -72,6 +72,7 @@ class MultiHandActivity : AppCompatActivity() {
         )
         processor.videoSurfaceOutput?.setFlipY(FLIP_FRAMES_VERTICALLY)
         PermissionHelper.checkAndRequestCameraPermissions(this)
+
         val packetCreator = processor.packetCreator
         val inputSidePackets: MutableMap<String, Packet> = HashMap()
         inputSidePackets[INPUT_NUM_HANDS_SIDE_PACKET_NAME] = packetCreator.createInt32(NUM_HANDS)

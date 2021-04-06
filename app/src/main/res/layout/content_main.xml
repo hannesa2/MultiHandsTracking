@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MedaipipeMainActivity"
+    tools:context=".MediaPipeMainActivity"
     tools:showIn="@layout/activity_mediapipe_main">
 
     <FrameLayout
         android:id="@+id/contentInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MedaipipeMainActivity" />
+        tools:context=".MediaPipeMainActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
