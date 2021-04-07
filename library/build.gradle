@@ -34,7 +34,7 @@ dependencies {
     api 'com.google.protobuf:protobuf-java:3.15.7'
 
     // CameraX core library
-    def camerax_version = "1.0.0-rc04"
+    def camerax_version = "1.1.0-alpha03"
     api "androidx.camera:camera-core:$camerax_version"
     api "androidx.camera:camera-camera2:$camerax_version"
     api "androidx.camera:camera-lifecycle:$camerax_version"
