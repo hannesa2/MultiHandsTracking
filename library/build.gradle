@@ -27,8 +27,7 @@ android {
 }
 
 dependencies {
-    api project(":holistic_tracking")
-    api project(":mp_multi_hand_aar")
+    embed fileTree(dir: 'libs', include: ['*.jar', '*.aar'] )
     api 'com.github.AppDevNext.Logcat:LogcatCore:2.5.0'
 
     // MediaPipe
