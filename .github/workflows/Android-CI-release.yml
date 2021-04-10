@@ -32,7 +32,7 @@ jobs:
         env:
           CRYPT_PASS: ${{ secrets.CRYPT_PASS }}
       - name: Build project
-        run: ./gradlew clean build
+        run: ./gradlew clean assembleRelease
         env:
           KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
           ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
