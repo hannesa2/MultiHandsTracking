@@ -38,7 +38,7 @@ jobs:
           ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
           ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
       - run: |
-          assetsAAR=$(find . -name *release.aar | while read -r asset ; do echo "-a $asset" ; done)
+          assetsAAR=$(find . -name *.aar | while read -r asset ; do echo "-a $asset" ; done)
           assetsAPK=$(find . -name *release.apk | while read -r asset ; do echo "-a $asset" ; done)
           hub release create ${assetsAAR} ${assetsAPK} -m ${{steps.tagger.outputs.tag}} ${{steps.tagger.outputs.tag}}
         env:
