@@ -8,6 +8,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
+        distribution: 'adopt'
         java_version: [ 11.0.3 ]
     steps:
       - name: Checkout
@@ -73,6 +74,7 @@ jobs:
       - name: Install JDK 11.0.3
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: 11.0.3
       - name: Install Android SDK
         uses: malinskiy/action-android/install-sdk@release/0.1.1
