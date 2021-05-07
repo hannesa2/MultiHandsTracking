@@ -31,7 +31,7 @@ dependencies {
     api 'com.google.flogger:flogger-system-backend:0.6'
     api 'com.google.code.findbugs:jsr305:3.0.2'
     api 'com.google.guava:guava:30.1.1-android'
-    api 'com.google.protobuf:protobuf-java:3.15.8'
+    api 'com.google.protobuf:protobuf-java:3.16.0'
 
     // CameraX core library
     def camerax_version = "1.0.0-rc05"
