@@ -1,3 +1,5 @@
+import org.gradle.internal.jvm.Jvm
+
 buildscript {
     ext.kotlin_version = '1.5.0'
     repositories {
@@ -10,6 +12,8 @@ buildscript {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
+
+println "Gradle uses Java ${Jvm.current()}"
 
 allprojects {
     repositories {
