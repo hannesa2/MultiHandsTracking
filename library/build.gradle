@@ -20,7 +20,7 @@ android {
 
 dependencies {
     api project(":mp_multi_hand_aar")
-    api 'com.github.AppDevNext.Logcat:LogcatCore:2.8.0'
+    api 'com.github.AppDevNext.Logcat:LogcatCore:2.8.1'
 
     // MediaPipe
     api 'com.google.flogger:flogger:0.6'
