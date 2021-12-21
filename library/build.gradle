@@ -23,7 +23,7 @@ dependencies {
     api 'com.github.AppDevNext.Logcat:LogcatCoreLib:2.9.5'
 
     // MediaPipe
-    api 'com.google.flogger:flogger:0.7.3'
+    api 'com.google.flogger:flogger:0.7.4'
     api 'com.google.flogger:flogger-system-backend:0.7.4'
     api 'com.google.code.findbugs:jsr305:3.0.2'
     api 'com.google.guava:guava:31.0.1-android'
