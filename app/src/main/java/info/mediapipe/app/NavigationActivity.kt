@@ -12,7 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import info.hannes.github.AppUpdateHelper
-import info.hannes.logcat.LogcatActivity
+import info.hannes.logcat.ui.LogcatActivity
 import info.mediapipe.app.multihand.MultiHandActivity
 
 abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
