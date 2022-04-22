@@ -4,7 +4,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.SurfaceTexture
 import android.os.Bundle
-import android.util.Log
 import android.util.Size
 import android.view.SurfaceHolder
 import android.view.SurfaceView
@@ -24,7 +23,6 @@ import com.google.mediapipe.glutil.EglManager
 import info.mediapipe.app.R
 import info.mediapipe.app.landmarksDebugString
 import timber.log.Timber
-import java.util.*
 
 
 class MultiHandActivity : AppCompatActivity() {
@@ -82,14 +80,12 @@ class MultiHandActivity : AppCompatActivity() {
 
         // To show verbose logging, run:
         // adb shell setprop log.tag.MainActivity VERBOSE
-        if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            processor.addPacketCallback(OUTPUT_LANDMARKS_STREAM_NAME) { packet: Packet ->
-                Timber.v("Received multi-hand landmarks packet.")
-                val timeDelay = System.currentTimeMillis() - packet.timestamp
-                val multiHandLandmarks = PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
-                if (multiHandLandmarks.isNotEmpty())
-                    Timber.v("[TS:${packet.timestamp}] ${multiHandLandmarks.landmarksDebugString()}")
-            }
+        processor.addPacketCallback(OUTPUT_LANDMARKS_STREAM_NAME) { packet: Packet ->
+            val timeDelay = System.currentTimeMillis() - packet.timestamp
+            Timber.v("Received multi-hand landmarks packet. $timeDelay")
+            val multiHandLandmarks = PacketGetter.getProtoVector(packet, NormalizedLandmarkList.parser())
+            if (multiHandLandmarks.isNotEmpty())
+                Timber.v("[TS:${packet.timestamp}] ${multiHandLandmarks.landmarksDebugString()}")
         }
     }
 
@@ -189,7 +185,6 @@ class MultiHandActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "MultiHandActivity"
         private const val BINARY_GRAPH_NAME = "hand_tracking_mobile_gpu.binarypb"
         private const val INPUT_VIDEO_STREAM_NAME = "input_video"
         private const val OUTPUT_VIDEO_STREAM_NAME = "output_video"
