@@ -85,4 +85,4 @@ jobs:
         if: ${{ always() }}
         with:
           name: MediaPipe-Lint-report
-          path: applications/**/build/reports/lint-results.html
+          path: ./**/build/reports/lint-results*.html
