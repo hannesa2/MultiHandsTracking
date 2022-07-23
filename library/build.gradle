@@ -20,7 +20,7 @@ android {
 
 dependencies {
     api project(":mp_multi_hand_aar")
-    api 'com.github.AppDevNext.Logcat:LogcatCoreLib:2.10'
+    api 'com.github.AppDevNext.Logcat:LogcatCoreLib:2.11.2'
     api 'com.github.AppDevNext.Logcat:LogcatCoreUI:2.10'
     api 'com.google.android.material:material:1.6.0'
 
@@ -29,7 +29,7 @@ dependencies {
     api 'com.google.flogger:flogger-system-backend:0.7.4'
     api 'com.google.code.findbugs:jsr305:3.0.2'
     api 'com.google.guava:guava:31.1-android'
-    api 'com.google.protobuf:protobuf-java:3.21.0'
+    api 'com.google.protobuf:protobuf-java:3.21.3'
 
     // CameraX core library
     def camerax_version = "1.0.2"
