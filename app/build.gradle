@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "info.mediapipe.multihand.app"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode getGitCommitCount()
         versionName getTag()
         buildConfigField "String", 'GIT_REPOSITORY', "\"" + getGitOriginRemote() + "\""
