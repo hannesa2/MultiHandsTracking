@@ -65,6 +65,7 @@ android {
             versionNameSuffix ".debug"
         }
     }
+    namespace 'info.mediapipe.app'
 
 }
 
