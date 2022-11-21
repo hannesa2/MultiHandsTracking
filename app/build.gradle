@@ -77,7 +77,7 @@ dependencies {
     implementation "androidx.core:core-ktx:1.9.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.preference:preference-ktx:1.2.0'
-    implementation 'com.github.hannesa2:githubAppUpdate:1.5'
+    implementation 'com.github.hannesa2:githubAppUpdate:1.6'
 
     androidTestImplementation 'com.github.AppDevNext:Moka:1.5'
     androidTestImplementation "androidx.test.ext:junit:1.1.4"
