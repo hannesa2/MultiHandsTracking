@@ -15,8 +15,7 @@ class MediaPipeMainActivity : NavigationActivity() {
 
         AppUpdateHelper.checkForNewVersion(
                 this,
-                BuildConfig.GIT_REPOSITORY,
-                BuildConfig.VERSION_NAME
+                BuildConfig.GIT_REPOSITORY
         )
     }
 }
