@@ -4,6 +4,7 @@
     android:installLocation="internalOnly">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application tools:ignore="AllowBackup" />
 </manifest>
