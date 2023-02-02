@@ -37,7 +37,7 @@ jobs:
       - name: Run tests
         run: ./gradlew test -Ponly_x86_64
       #      - name: Run instrumentation tests
-      #        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
+      #        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.4
       #        with:
       #          cmd: ./gradlew cAT  -Ponly_x86_64 --continue
       #          api: 28
