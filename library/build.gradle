@@ -20,7 +20,7 @@ android {
 dependencies {
     api project(":mp_multi_hand_aar")
     api 'com.github.AppDevNext.Logcat:LogcatCoreLib:2.12'
-    api 'com.google.android.material:material:1.8.0'
+    api 'com.google.android.material:material:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
 
     // MediaPipe
