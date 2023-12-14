@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'info.mediapipe.app'
     defaultConfig {
         applicationId "info.mediapipe.multihand.app"
         minSdkVersion 21
@@ -70,8 +71,6 @@ android {
             versionNameSuffix ".debug"
         }
     }
-    namespace 'info.mediapipe.app'
-
 }
 
 dependencies {
