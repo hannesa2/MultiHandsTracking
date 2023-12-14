@@ -1,4 +1,5 @@
-include ':mp_multi_hand_aar'
+include ':holistic_tracking'
+//include ':mp_multi_hand_aar'
 include ':app'
 include ':library'
 rootProject.name='MediaPipeMultiHandsTrackingApp'
