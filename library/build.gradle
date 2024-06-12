@@ -27,7 +27,7 @@ dependencies {
     api project(":mp_multi_hand_aar")
     api 'com.github.AppDevNext.Logcat:LogcatCoreLib:3.2'
     api 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2'
 
     // MediaPipe
     api 'com.google.flogger:flogger:0.8'
