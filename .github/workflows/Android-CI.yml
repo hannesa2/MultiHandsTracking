@@ -4,10 +4,11 @@ on: [ pull_request ]
 
 jobs:
   buildTest:
-    name: Build & Test JDK ${{ matrix.java_version }}
-    runs-on: macos-12
+    name: Build
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ macOS-13 ]
         java_version: [ 17 ]
     steps:
       - name: Checkout
@@ -66,17 +67,21 @@ jobs:
         run: ./signing/cleanup.sh
   Check:
     name: Check
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java_version: [ 17 ]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install JDK 17
+      - name: Install JDK ${{ matrix.java_version }}
         uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: ${{ matrix.java_version }}
       - name: Install Android SDK
         uses: malinskiy/action-android/install-sdk@release/0.1.4
       - name: Code checks
