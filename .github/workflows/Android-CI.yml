@@ -8,9 +8,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macOS-13 ]
+        os: [ ubuntu-latest ]
         java_version: [ 17 ]
     steps:
+      - name: kvm support
+        run: |
+          egrep -c '(vmx|svm)' /proc/cpuinfo
+          id
+          sudo adduser $USER kvm
+          sudo chown -R $USER /dev/kvm
+          id
       - name: Checkout
         uses: actions/checkout@v4
         with:
