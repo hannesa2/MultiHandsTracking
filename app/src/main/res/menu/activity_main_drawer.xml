@@ -8,6 +8,10 @@
             android:id="@+id/nav_multihand"
             android:icon="@drawable/ic_hand"
             android:title="@string/multihand_tracking" />
+        <item
+            android:id="@+id/nav_holistic"
+            android:icon="@drawable/ic_holistic"
+            android:title="@string/holistic" />
     </group>
 
 </menu>
