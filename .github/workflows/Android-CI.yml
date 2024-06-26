@@ -28,7 +28,7 @@ jobs:
           java-version: ${{ matrix.java_version }}
       - uses: gradle/wrapper-validation-action@v3.4.2
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.1.4
+        uses: hannesa2/action-android/install-sdk@0.1.16.7
       - name: Debug keystore
         run: keytool -genkey -v -keystore app/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "C=US, O=Android, CN=Android Debug"
       - name: Build project
@@ -78,7 +78,7 @@ jobs:
           distribution: 'adopt'
           java-version: 17
       - name: Install Android SDK
-        uses: malinskiy/action-android/install-sdk@release/0.1.4
+        uses: hannesa2/action-android/install-sdk@0.1.16.7
       - name: Code checks
         run: ./gradlew check
       - name: Archive Lint report
