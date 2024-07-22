@@ -38,7 +38,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: ${{ matrix.java_version }}
-      - uses: gradle/wrapper-validation-action@v3.4.2
+      - uses: gradle/wrapper-validation-action@v3.5.0
       - name: Install Android SDK
         uses: hannesa2/action-android/install-sdk@0.1.16.7
       - name: Debug keystore
