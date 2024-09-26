@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('holistic_tracking_aar.aar_0.8.3.1-5-gf6390f0.aar'))
