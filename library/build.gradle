@@ -5,8 +5,8 @@ android {
     namespace 'info.mediapipe.multihand'
     defaultConfig {
         minSdkVersion 21
-        compileSdk 34
-        targetSdk 34
+        compileSdk 35
+        targetSdk 35
     }
     buildTypes {
         release {
