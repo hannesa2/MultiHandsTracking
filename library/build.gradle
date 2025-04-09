@@ -42,6 +42,6 @@ dependencies {
     api "androidx.camera:camera-camera2:$camerax_version"
     api "androidx.camera:camera-lifecycle:$camerax_version"
 
-    implementation "androidx.core:core-ktx:1.15.0"
+    implementation "androidx.core:core-ktx:1.16.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
