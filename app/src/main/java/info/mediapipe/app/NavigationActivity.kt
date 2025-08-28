@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +17,11 @@ import info.hannes.logcat.ui.LogcatActivity
 import info.mediapipe.app.multihand.MultiHandActivity
 
 abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onBackPressedDispatcher.addCallback(this, backPressedCallback)
+    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -35,12 +41,14 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
         textVersion.text = BuildConfig.VERSION
     }
 
-    override fun onBackPressed() {
-        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START)
+            } else {
+                onBackPressedDispatcher.onBackPressed()
+            }
         }
     }
 
@@ -81,10 +89,12 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
                 )
                 true
             }
+
             R.id.action_logcat -> {
                 openActivity(LogcatActivity::class.java)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
