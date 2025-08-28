@@ -6,8 +6,8 @@ android {
     defaultConfig {
         applicationId "info.mediapipe.multihand.app"
         minSdkVersion 21
-        compileSdk 35
-        targetSdk 35
+        compileSdk 36
+        targetSdk 36
         versionCode getGitCommitCount()
         versionName getTag()
         buildConfigField "String", 'GIT_REPOSITORY', "\"" + getGitOriginRemote() + "\""
