@@ -5,7 +5,7 @@ android {
     namespace 'info.mediapipe.app'
     defaultConfig {
         applicationId "info.mediapipe.multihand.app"
-        minSdkVersion 21
+        minSdkVersion 23
         compileSdk 36
         targetSdk 36
         versionCode getGitCommitCount()
