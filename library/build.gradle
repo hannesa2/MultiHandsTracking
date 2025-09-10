@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     namespace 'info.mediapipe.multihand'
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 23
         compileSdk 36
         targetSdk 36
     }
