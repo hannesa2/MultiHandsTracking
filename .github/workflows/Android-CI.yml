@@ -49,31 +49,6 @@ jobs:
           VERSION: ${{steps.tagger.outputs.tag}}
       - name: Run tests
         run: ./gradlew test -Ponly_x86_64
-      #      - name: Run instrumentation tests
-      #        uses: malinskiy/action-android/emulator-run-cmd@release/0.1.4
-      #        with:
-      #          cmd: ./gradlew cAT  -Ponly_x86_64 --continue
-      #          api: 28
-      #          tag: default
-      #          abi: arm64-v8a
-      #      - name: Archive Espresso results
-      #        uses: actions/upload-artifact@v2.1.4
-      #        if: ${{ always() }}
-      #        with:
-      #          name: MediaPipe-Espresso-report
-      #          path: applications/**/build/reports/androidTests/connected/
-      #      - name: Save logcat output
-      #        uses: actions/upload-artifact@master
-      #        if: failure()
-      #        with:
-      #          name: MediaPipe-logcat
-      #          path: artifacts/logcat.log
-      #      - name: Archive screenshots
-      #        uses: actions/upload-artifact@v2.1.4
-      #        if: ${{ always() }}
-      #        with:
-      #          name: MediaPipe-Screenshots
-      #          path: applications/screenshots/adb/
       - name: cleanup keystore
         run: ./signing/cleanup.sh
   Check:
