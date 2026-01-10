@@ -39,6 +39,13 @@ jobs:
           KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
           ALIAS_NAME: ${{ secrets.ALIAS_NAME }}
           ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
+      - run: |
+          assetsAAR=$(find . -name *.aar | while read -r asset ; do echo "-a $asset" ; done)
+          assetsAPK=$(find . -name *release.apk | while read -r asset ; do echo "-a $asset" ; done)
+          hub release create ${assetsAAR} ${assetsAPK} -m ${{steps.tagger.outputs.tag}} ${{steps.tagger.outputs.tag}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{steps.tagger.outputs.tag}}
       - name: cleanup keystore
         run: ./signing/cleanup.sh
 

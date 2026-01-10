@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import info.hannes.github.AppUpdateHelper
 import info.hannes.logcat.ui.LogcatActivity
+import info.mediapipe.app.holistic.HolisticActivity
 import info.mediapipe.app.multihand.MultiHandActivity
 
 abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -57,6 +58,8 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
         val id = item.itemId
         if (id == R.id.nav_multihand) {
             openActivity(MultiHandActivity::class.java)
+        } else if (id == R.id.nav_holistic) {
+            openActivity(HolisticActivity::class.java)
         }
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.START)
@@ -85,6 +88,7 @@ abstract class NavigationActivity : AppCompatActivity(), NavigationView.OnNaviga
             R.id.action_update -> {
                 AppUpdateHelper.checkForNewVersion(
                     this,
+
                     BuildConfig.GIT_REPOSITORY
                 )
                 true
