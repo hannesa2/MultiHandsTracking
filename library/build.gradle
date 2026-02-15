@@ -1,17 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
 android {
-    namespace 'info.mediapipe.multihand'
+    namespace "info.mediapipe.multihand"
+    compileSdk 36
     defaultConfig {
         minSdkVersion 23
-        compileSdk 36
         targetSdk 36
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -19,22 +19,22 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = "17"
     }
 }
 
 dependencies {
     api project(":mp_multi_hand_aar")
-    api 'com.github.AppDevNext.Logcat:LogcatCoreLib:3.4'
-    api 'com.google.android.material:material:1.13.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0'
+    api "com.github.AppDevNext.Logcat:LogcatCoreLib:3.4"
+    api "com.google.android.material:material:1.13.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0"
 
     // MediaPipe
-    api 'com.google.flogger:flogger:0.9'
-    api 'com.google.flogger:flogger-system-backend:0.9'
-    api 'com.google.code.findbugs:jsr305:3.0.2'
-    api 'com.google.guava:guava:33.5.0-android'
-    api 'com.google.protobuf:protobuf-java:4.33.5'
+    api "com.google.flogger:flogger:0.9"
+    api "com.google.flogger:flogger-system-backend:0.9"
+    api "com.google.code.findbugs:jsr305:3.0.2"
+    api "com.google.guava:guava:33.5.0-android"
+    api "com.google.protobuf:protobuf-java:4.33.5"
 
     // CameraX core library
     def camerax_version = "1.5.3"
