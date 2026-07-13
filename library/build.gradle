@@ -25,7 +25,7 @@ android {
 
 dependencies {
     api project(":mp_multi_hand_aar")
-    api "com.github.AppDevNext.Logcat:LogcatCoreLib:3.5"
+    api "com.github.AppDevNext.Logcat:LogcatCoreLib:3.6"
     api "com.google.android.material:material:1.14.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0"
 
