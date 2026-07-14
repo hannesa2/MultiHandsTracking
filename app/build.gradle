@@ -77,7 +77,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.7.1"
     implementation "androidx.constraintlayout:constraintlayout:2.2.1"
     implementation project(":library")
-    implementation "com.github.AppDevNext.Logcat:LogcatCoreUI:3.5"
+    implementation "com.github.AppDevNext.Logcat:LogcatCoreUI:3.6"
     implementation "androidx.core:core-ktx:1.18.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.preference:preference-ktx:1.2.1"
