@@ -2,14 +2,13 @@ apply plugin: "com.android.application"
 
 android {
     namespace "info.mediapipe.app"
-    compileSdk 36
+    compileSdk 37
     buildFeatures {
         buildConfig = true
     }
     defaultConfig {
         applicationId "info.mediapipe.multihand.app"
         minSdkVersion 23
-        targetSdk 36
         versionCode getGitCommitCount()
         versionName getTag()
         buildConfigField "String", "GIT_REPOSITORY", "\"" + getGitOriginRemote() + "\""
