@@ -2,10 +2,9 @@ apply plugin: "com.android.library"
 
 android {
     namespace "info.mediapipe.multihand"
-    compileSdk 36
+    compileSdk 37
     defaultConfig {
         minSdkVersion 23
-        targetSdk 36
     }
     buildTypes {
         release {
